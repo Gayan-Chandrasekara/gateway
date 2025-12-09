@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Browser Check</title>
+</head>
+<body style="margin:0; font-family: Arial, sans-serif;">
+
+<script>
+  function detectBrowser() {
+    const ua = navigator.userAgent.toLowerCase();
+
+    if (ua.includes("chrome") && !ua.includes("edg") && !ua.includes("opr") && !ua.includes("vivaldi") && !ua.includes("brave")) {
+      return "chrome";
+    }
+    if (ua.includes("edg")) return "edge";
+    if (ua.includes("opr")) return "opera";
+    if (ua.includes("vivaldi")) return "vivaldi";
+    if (ua.includes("brave")) return "brave";
+    if (ua.includes("firefox")) return "firefox";
+    if (ua.includes("safari") && !ua.includes("chrome")) return "safari";
+    return "unknown";
+  }
+
+  const browser = detectBrowser();
+
+  if (browser === "chrome") {
+    window.location.href = "https://sites.google.com/view/pramukalawschool";
+  } else {
+    const prettyName = {
+      edge: "Microsoft Edge",
+      opera: "Opera",
+      vivaldi: "Vivaldi",
+      brave: "Brave",
+      firefox: "Mozilla Firefox",
+      safari: "Safari",
+      unknown: "an unknown browser"
+    }[browser] || "an unknown browser";
+
+    document.body.innerHTML = `
+      <div style="padding: 24px; text-align: center;">
+        <h3 style="margin-bottom: 10px;">This page is available only in Google Chrome</h3>
+        <p style="font-size: 16px;">You are currently using <strong>${prettyName}</strong>.</p>
+        <p>Please open this page using Google Chrome to continue.</p>
+      </div>
+    `;
+  }
+</script>
+
+</body>
+</html>
